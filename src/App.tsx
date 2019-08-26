@@ -8,14 +8,14 @@
  * @format
  */
 
-import React, {Fragment, ReactNode} from 'react'
+import React, {Fragment, ReactElement} from 'react'
 import {SafeAreaView, ScrollView, Text, StatusBar} from 'react-native'
 
 import {ENV} from 'react-native-dotenv'
 import Container from './components/Container'
 import Header from './components/Header'
 
-const App = (): ReactNode => {
+const App = (): ReactElement => {
   const usingHermes =
     typeof HermesInternal === 'object' && HermesInternal !== null
 
