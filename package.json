@@ -5,11 +5,18 @@
   "scripts": {
     "start": "react-native start",
     "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "postinstall:ios": "cd ios && pod install ; cd ..",
     "postinstall:nodeify": "rn-nodeify --install --hack",
     "postinstall": "npm run postinstall:nodeify && npm run postinstall:ios",
     "lint": "eslint --ignore-path .gitignore './src/**/*.{js,ts,tsx}'",
-    "lint:fix": "npm run lint -- --fix --quiet"
+    "lint:fix": "npm run lint -- --fix --quiet",
+    "start:native": "ENVFILE=.env && react-native start",
+    "start:android": "ENVFILE=.env && react-native run-android",
+    "start:ios": "ENVFILE=.env && react-native run-ios",
+    "clean": "watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-*",
+    "clean:hard": "npm run clean && rm -rf node_modules/ && npm cache clean --force && npm install && npm start -- --reset-cache"
   },
   "dependencies": {
     "@tradle/react-native-http": "^2.0.1",
@@ -57,6 +64,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "jest": "24.9.0",
     "metro-react-native-babel-preset": "0.54.1",
+    "react-native-dotenv": "^0.2.0",
     "react-test-renderer": "16.8.6",
     "rn-nodeify": "^10.1.0",
     "typescript": "3.5.3"
