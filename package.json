@@ -15,8 +15,7 @@
     "start:native": "ENVFILE=.env && react-native start",
     "start:android": "ENVFILE=.env && react-native run-android",
     "start:ios": "ENVFILE=.env && react-native run-ios",
-    "clean": "watchman watch-del-all && rm -rf ios/build && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-*",
-    "clean:hard": "npm run clean && rm -rf node_modules/ && npm cache clean --force && npm install && npm start -- --reset-cache"
+    "clean": "./scripts/clean.sh"
   },
   "dependencies": {
     "@tradle/react-native-http": "^2.0.1",
@@ -39,6 +38,7 @@
     "react-native-randombytes": "^3.5.3",
     "react-native-tcp": "^3.3.1",
     "react-native-udp": "^2.6.1",
+    "react-native-unimodules": "^0.4.1",
     "readable-stream": "^1.0.33",
     "stream-browserify": "^1.0.0",
     "string_decoder": "^0.10.31",
