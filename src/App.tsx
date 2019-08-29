@@ -15,23 +15,36 @@ import {ENV} from 'react-native-dotenv'
 import Container from './components/Container'
 import Header from './components/Header'
 
+import configureStore from './store'
+import {Provider} from 'react-redux'
+import AuthTest from './containers/AuthTest'
+import AuthMessage from './containers/AuthMessage'
+import ErrorMessage from './containers/ErrorMessage'
+
+const store = configureStore()
+
 const App = (): ReactElement => {
   const usingHermes =
     typeof HermesInternal === 'object' && HermesInternal !== null
 
   return (
-    <Fragment>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <Header title="Nuls App" />
-          <Container>
-            {!usingHermes ? null : <Text>Engine: Hermes</Text>}
-            <Text>Using Config | ENV = {ENV}</Text>
-          </Container>
-        </ScrollView>
-      </SafeAreaView>
-    </Fragment>
+    <Provider store={store}>
+      <Fragment>
+        <StatusBar barStyle="dark-content" />
+        <SafeAreaView>
+          <ScrollView contentInsetAdjustmentBehavior="automatic">
+            <Header title="Nuls App" />
+            <Container>
+              {!usingHermes ? null : <Text>Engine: Hermes</Text>}
+              <Text>Using Config asdas2| ENV = {ENV}</Text>
+              <AuthTest />
+            </Container>
+          </ScrollView>
+        </SafeAreaView>
+      </Fragment>
+      <AuthMessage />
+      <ErrorMessage />
+    </Provider>
   )
 }
 

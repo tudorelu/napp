@@ -26,6 +26,10 @@
   <key>NSRemindersUsageDescription</key>
   <string>Allow $(PRODUCT_NAME) to access your reminders</string>
   <!-- UNIMODULES - END -->
+
+  <key>NSFaceIDUsageDescription</key>
+  <string>Allow $(PRODUCT_NAME) to authenticate with FaceId</string>
+  
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
