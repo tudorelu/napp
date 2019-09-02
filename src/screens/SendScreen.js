@@ -2,16 +2,14 @@
 
 import React, { Component } from 'react';
 
-import { StyleSheet, TouchableOpacity } from 'react-native';
-
+import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import { TransferTransaction, nulsToNa, Utxo } from 'nuls-js';
+import { Icon } from 'react-native-elements'
+import RNPickerSelect from 'react-native-picker-select';
 
 import GenericScreen from '../components/GenericScreen'
 import PrimaryButton from '../components/PrimaryButton'
 import InputField from '../components/InputField'
-
-import { Icon } from 'react-native-elements'
-
 import theme from '../theme';
 
 class SendScreen extends Component {
@@ -51,8 +49,13 @@ class SendScreen extends Component {
   };
   
 	constructor(props) {
-	  super(props); 
-		this.state = {address:'', amount:'', note:''};
+    super(props); 
+    let wallet = props.navigation.getParam('fromAddress', 'default');
+    this.state = {address:'', amount:'', note:'', selectedWallet:{label:wallet.address, value:wallet.address}};
+
+    this.inputRefs = {
+      selectedWallet: {label:wallet.address, value:wallet.address}
+    };
 	}
 
   async sendNuls(){
@@ -95,21 +98,55 @@ class SendScreen extends Component {
   }
 
   render() {
+    const placeholder = {
+      label: 'Select A Wallet',
+      value: null,
+      color: '#9EA0A4',
+    };
+
+    const walletItems = [];
+
+    [{address:"Wallet Address 1"}, {address:"Wallet Address 2"}].forEach(item => {
+      walletItems.push({label: item.address, value:item.address})
+    });
+
     return (
     	<GenericScreen title="Send Funds" avatar="upload">
-      
+
+        <View style={styles.pickerRoot}>
+          <Text style={styles.label}> From </Text>
+        </View>
+
+        <RNPickerSelect
+          placeholder={placeholder}
+          items={walletItems}
+          onValueChange={value => {
+            this.setState({
+              selectedWallet: value,
+            });
+          }}
+          style={pickerSelectStyles}
+          value={this.state.selectedWallet}
+          useNativeAndroidPickerStyle={false}
+          ref={el => {
+            this.inputRefs.selectedWallet = el;
+          }}
+        />
+
     		<InputField
-    			label="Address Receiver"
+    			label="Send To"
     			onChangeText={(address) => this.setState({address})}
       		value={this.state.address}
     		/>
+
     		<InputField
     			label="Amount"
     			onChangeText={(amount) => this.setState({amount})}
       		value={this.state.amount}
     		/>
+
     		<InputField
-    			label="Note"
+    			label="Note (optional)"
     			multiline
     			placeholder="Enter Here"
     			placeholderTextColor="rgba(255,255,255,0.3)"
@@ -125,7 +162,47 @@ class SendScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    alignSelf:'center',
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: theme.palette.primary.dark,
+    borderRadius: 2,
+    color: 'white',
+    paddingRight: 30, // to ensure the text is never behind the icon
+		marginLeft: 20,
+		marginRight: 20,
+  	width: theme.defaultContainerWidth,
+  },
+  inputAndroid: {
+    alignSelf:'center',
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: 'white', //theme.palette.primary.dark,
+    borderRadius: 3,
+    color: theme.palette.primary.light,
+    paddingRight: 30, // to ensure the text is never behind the icon
+		marginLeft: 20,
+		marginRight: 20,
+  	width: theme.defaultContainerWidth,
+  },
+});
+
+const styles = StyleSheet.create({  
+  pickerRoot: {
+    alignSelf:'center',
+  	width: theme.defaultContainerWidth,
+  },
+  label: {
+    ...theme.inputFieldLabel,
+    marginBottom:5,
+    marginTop:10,
+  },
   button: {
   	...theme.primaryButton,
   },
