@@ -20,12 +20,15 @@ import {Provider} from 'react-redux'
 import AuthTest from './containers/AuthTest'
 import AuthMessage from './containers/AuthMessage'
 import ErrorMessage from './containers/ErrorMessage'
+import accountService from './services/account'
 
 const store = configureStore()
 
 const App = (): ReactElement => {
   const usingHermes =
     typeof HermesInternal === 'object' && HermesInternal !== null
+
+  const acc = accountService.create().toObject()
 
   return (
     <Provider store={store}>
@@ -36,7 +39,10 @@ const App = (): ReactElement => {
             <Header title="Nuls App" />
             <Container>
               {!usingHermes ? null : <Text>Engine: Hermes</Text>}
-              <Text>Using Config asdas2| ENV = {ENV}</Text>
+              <Text>Using Config | ENV = {ENV}</Text>
+              <Text>
+                Using nuls.io | WALLET = {JSON.stringify(acc, undefined, 2)}
+              </Text>
               <AuthTest />
             </Container>
           </ScrollView>
