@@ -1,10 +1,18 @@
+import {createSelector} from 'reselect'
+
 const namespace = 'entity'
 
-export const getEntities = (state: any, domain: string): any => {
+export const getEntities = (
+  state: any,
+  domain: string,
+): Record<string | number, any> => {
   return (state[namespace][domain] && state[namespace][domain].collection) || {}
 }
 
-export const getEntityIds = (state: any, domain: string): any => {
+export const getEntityIds = (
+  state: any,
+  domain: string,
+): (string | number)[] => {
   return (state[namespace][domain] && state[namespace][domain].ids) || []
 }
 
@@ -16,19 +24,16 @@ export const getEntity = (
   return state[namespace][domain] && state[namespace][domain].collection[id]
 }
 
-export const filterEntities = (
-  state: any,
-  domain: string,
-  filters?: any,
-): any => {
-  const ids: (string | number)[] = getEntityIds(state, domain)
-  const entities = ids.map((id: any) => getEntity(state, domain, id))
+export const filterEntities = (filters?: any) =>
+  createSelector(
+    [getEntities],
+    (entities): Record<string | number, any> => {
+      if (!filters) return entities
 
-  if (!filters) return entities
-
-  return entities.filter((entity: any) => {
-    return Object.keys(filters).reduce((ok: boolean, filter: any) => {
-      return ok && entity[filter] === filters[filter]
-    }, true)
-  })
-}
+      return entities.filter((entity: any) => {
+        return Object.keys(filters).reduce((curr: boolean, filter: any) => {
+          return curr && entity[filter] === filters[filter]
+        }, true)
+      })
+    },
+  )

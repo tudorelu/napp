@@ -9,7 +9,7 @@
  */
 
 import React, {Fragment, ReactElement} from 'react'
-import {SafeAreaView, ScrollView, Text, StatusBar} from 'react-native'
+import {SafeAreaView, ScrollView, Text, StatusBar, Button} from 'react-native'
 
 import {ENV} from 'react-native-dotenv'
 import Container from './components/Container'
@@ -20,15 +20,13 @@ import {Provider} from 'react-redux'
 import AuthTest from './containers/AuthTest'
 import AuthMessage from './containers/AuthMessage'
 import ErrorMessage from './containers/ErrorMessage'
-import accountService from './services/account'
+import AccountList from './containers/AccountList'
 
 const store = configureStore()
 
 const App = (): ReactElement => {
   const usingHermes =
     typeof HermesInternal === 'object' && HermesInternal !== null
-
-  const acc = accountService.create().toObject()
 
   return (
     <Provider store={store}>
@@ -40,9 +38,7 @@ const App = (): ReactElement => {
             <Container>
               {!usingHermes ? null : <Text>Engine: Hermes</Text>}
               <Text>Using Config | ENV = {ENV}</Text>
-              <Text>
-                Using nuls.io | WALLET = {JSON.stringify(acc, undefined, 2)}
-              </Text>
+              <AccountList />
               <AuthTest />
             </Container>
           </ScrollView>
