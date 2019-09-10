@@ -1,26 +1,29 @@
-import React from 'react';
-import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
+import React from 'react'
+import {
+  createSwitchNavigator,
+  createStackNavigator,
+  createAppContainer,
+} from 'react-navigation'
 
-import MainStackNavigator from './MainStackNavigator';
-import AuthNavigator from './AuthNavigator';
+import MainStackNavigator from './MainStackNavigator'
+import AuthNavigator from './AuthNavigator'
 
-import SplashScreen from '../screens/SplashScreen';
-import WelcomeScreen from '../screens/WelcomeScreen';
+import SplashScreen from '../screens/SplashScreen'
+import WelcomeScreen from '../screens/WelcomeScreen'
 
 const AppNavigator = createSwitchNavigator({
   // You could add another route here for authentication.
   // Read more at https://reactnavigation.org/docs/en/auth-flow.html
   Splash: SplashScreen,
-	AuthNavigator: AuthNavigator,
+  AuthNavigator: AuthNavigator,
   App: MainStackNavigator,
-});
+})
 
 AppNavigator.navigationOptions = {
-  header: null
+  header: null,
 }
-const AppContainer = createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(AppNavigator)
 
 // Now AppContainer is the main component for React to render
 
 export default AppContainer
-

@@ -1,44 +1,44 @@
-import React from 'react';
-import { Platform } from 'react-native';
-import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
+import React from 'react'
+import {Platform} from 'react-native'
+import {createSwitchNavigator, createStackNavigator} from 'react-navigation'
 
-import PinScreen from '../screens/PinScreen';
-import SetPinScreen from '../screens/SetPinScreen';
-import ConfirmPinScreen from '../screens/ConfirmPinScreen';
-import DisclaimerScreen from '../screens/DisclaimerScreen';
-import SetupAccessScreen from '../screens/SetupAccessScreen';
+import PinScreen from '../screens/PinScreen'
+import SetPinScreen from '../screens/SetPinScreen'
+import ConfirmPinScreen from '../screens/ConfirmPinScreen'
+import DisclaimerScreen from '../screens/DisclaimerScreen'
+import SetupAccessScreen from '../screens/SetupAccessScreen'
 
-import LoginScreen from '../screens/LoginScreen';
-import SelectUserFlowScreen from '../screens/SelectUserFlowScreen';
+import LoginScreen from '../screens/LoginScreen'
+import SelectUserFlowScreen from '../screens/SelectUserFlowScreen'
 
 const FirstTimeAuthNavigator = createStackNavigator({
   SetupAccess: SetupAccessScreen,
   Disclaimer: DisclaimerScreen,
   SetPin: SetPinScreen,
   ConfirmPin: ConfirmPinScreen,
-});
+})
 
 FirstTimeAuthNavigator.navigationOptions = {
-  header: null
+  header: null,
 }
 
 const NormalAuthNavigator = createStackNavigator({
   Login: LoginScreen,
   Pin: PinScreen,
-});
+})
 
 NormalAuthNavigator.navigationOptions = {
-  header: null
+  header: null,
 }
 
 const AuthNavigator = createSwitchNavigator({
-	SelectUserFlow:SelectUserFlowScreen,
+  SelectUserFlow: SelectUserFlowScreen,
   FirstTimeAuth: FirstTimeAuthNavigator,
-  NormalAuth: NormalAuthNavigator
-});
+  NormalAuth: NormalAuthNavigator,
+})
 
 AuthNavigator.navigationOptions = {
-  header: null
+  header: null,
 }
 
-export default AuthNavigator;
+export default AuthNavigator

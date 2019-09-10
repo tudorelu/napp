@@ -1,33 +1,42 @@
-import React, { Component } from 'react';
-
-import { StyleSheet, View, Text } from 'react-native';
-
-import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
-import theme from '../theme';
-
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import {StyleSheet, View, Text} from 'react-native'
+import SmoothPinCodeInput from 'react-native-smooth-pincode-input'
+import theme from '../theme'
 // import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 // import { setPin } from '../actions/Auth';
-
+const styles = StyleSheet.create({
+  container: {
+    ...theme.darkScreenRoot,
+  },
+  title: {
+    ...theme.title,
+    color: 'white',
+  },
+  subtitle: {
+    ...theme.subtitle,
+    color: '#ddd',
+  },
+})
 class SetPinScreen extends Component {
-
-  constructor(props){
-    super(props);
+  static propTypes = {
+    navigation: PropTypes.navigation,
+  }
+  constructor(props) {
+    super(props)
     this.state = {
-      code: ""
+      code: '',
     }
   }
 
   render() {
     return (
       <View style={styles.container}>
+        <Text style={styles.title}>Enter a new 6 digit code.</Text>
 
-	      <Text style={styles.title}>
-	        Enter a new 6 digit code.
-	      </Text>
-
-        <Text style={styles.subtitle}> 
-          This code will be used to sign important actions 
+        <Text style={styles.subtitle}>
+          This code will be used to sign important actions
         </Text>
 
         <SmoothPinCodeInput
@@ -39,44 +48,31 @@ class SetPinScreen extends Component {
           cellStyleFocused={{
             borderColor: '#fff',
           }}
-          mask={<View style={{
-              width: 10,
-              height: 10,
-              borderRadius: 25,
-              backgroundColor: 'white',
-            }}></View>}
+          mask={
+            <View
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: 25,
+                backgroundColor: 'white',
+              }}></View>
+          }
           maskDelay={100}
           codeLength={6}
-          onTextChange={code => this.setState({ code })}
+          onTextChange={code => this.setState({code})}
           onFulfill={pinCode => this._setCode(pinCode)}
-          />
+        />
 
-	      {/*<PrimaryButton title="NEXT" onPress={() => this.props.navigation.navigate('ConfirmPin')} />*/}
-
+        {/*<PrimaryButton title="NEXT" onPress={() => this.props.navigation.navigate('ConfirmPin')} />*/}
       </View>
-    );
+    )
   }
 
-  _setCode = (pinCode) => {
-      //this.props.setPin(pinCode);
-      this.props.navigation.navigate('ConfirmPin');
+  _setCode = pinCode => {
+    //this.props.setPin(pinCode);
+    this.props.navigation.navigate('ConfirmPin')
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    ...theme.darkScreenRoot,
-  },
-  title:{
-    ...theme.title,
-    color:'white'
-  },
-  subtitle:{
-    ...theme.subtitle,
-    color:'#ddd'
-  }
-});
-
 
 // const mapStateToProps = (state) => {
 //   const { auth } = state.auth
@@ -89,4 +85,4 @@ const styles = StyleSheet.create({
 //   }, dispatch)
 // );
 
-export default SetPinScreen; //connect(mapStateToProps, mapDispatchToProps)(SetPinScreen);
+export default SetPinScreen //connect(mapStateToProps, mapDispatchToProps)(SetPinScreen);

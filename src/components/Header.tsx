@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react'
+import React, {ReactNode} from 'react'
 import styled from 'styled-components/native'
-import Title from './Title';
+import Title from './Title'
 
 export const HeaderBox = styled.View`
   background-color: #ddd;
@@ -19,6 +19,5 @@ const Header: React.FC<Props> = ({title}: Props) => {
     </HeaderBox>
   )
 }
-
 
 export default Header

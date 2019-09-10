@@ -1,7 +1,7 @@
 const theme = {
   palette: {
     primary: {
-      light:'#0A3B89',
+      light: '#0A3B89',
       lighter: '#82adf2',
       main: '#002E78',
       midDark: '#00235B',
@@ -13,31 +13,31 @@ const theme = {
       dark: '#5FB640',
       contrastText: '#FFF',
     },
-    green:{
-      main:"#74D301",
+    green: {
+      main: '#74D301',
     },
-    red:{
-      main:"#ff001e",
-      light:"#ff8997",
-      midDark:"#D0021B",
-    }
+    red: {
+      main: '#ff001e',
+      light: '#ff8997',
+      midDark: '#D0021B',
+    },
   },
-  walletQRImage:{
-    alignSelf:'center',
-    width:300,
-    height:300,
-    margin:20,
+  walletQRImage: {
+    alignSelf: 'center',
+    width: 300,
+    height: 300,
+    margin: 20,
   },
   header: {
-    color:'white',
+    color: 'white',
     //fontFamily: "Neuzeit Grotesk",
     fontSize: 24,
     fontWeight: 'bold',
   },
   picker: {
-    backgroundColor:'#002E78',
+    backgroundColor: '#002E78',
     color: 'white',
-    alignSelf:'center',
+    alignSelf: 'center',
     height: 40,
     width: 280,
   },
@@ -45,20 +45,20 @@ const theme = {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
-    marginTop:5,
-    marginBottom:5,
-    padding:3,
-    paddingLeft:15,
-    paddingRight:10,
+    marginTop: 5,
+    marginBottom: 5,
+    padding: 3,
+    paddingLeft: 15,
+    paddingRight: 10,
   },
   inputFieldLabel: {
-    opacity: 0.8, 
-    color: '#FFFFFF', 
-    //fontFamily: "Sofia Pro", 
+    opacity: 0.8,
+    color: '#FFFFFF',
+    //fontFamily: "Sofia Pro",
     fontSize: 14,
   },
   inputFiledText: {
-    color: '#FFFFFF', 
+    color: '#FFFFFF',
     //fontFamily: "Neuzeit Grotesk",
   },
   shape: {
@@ -76,38 +76,38 @@ const theme = {
   primaryButton: {
     backgroundColor: '#00235B',
     borderRadius: 0,
-    margin:5,
+    margin: 5,
     //marginBottom:10,
-    alignSelf:'flex-end',
-    justifyContent:'center',
-    alignSelf:'center',
+    alignSelf: 'flex-end',
+    justifyContent: 'center',
+    alignSelf: 'center',
     width: 300,
     height: 40,
   },
   disabledPrimaryButton: {
     backgroundColor: '#8883',
     borderRadius: 0,
-    margin:5,
+    margin: 5,
     //marginBottom:10,
-    alignSelf:'flex-end',
-    justifyContent:'center',
-    alignSelf:'center',
+    alignSelf: 'flex-end',
+    justifyContent: 'center',
+    alignSelf: 'center',
     width: 300,
     height: 40,
   },
-  defaultContainerWidth:300,
+  defaultContainerWidth: 300,
   buttonText: {
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: 'bold',
-    alignSelf:'center',
+    alignSelf: 'center',
     padding: 5,
-  },  
+  },
   disabledButtonText: {
     color: '#ddd',
     fontSize: 16,
     fontWeight: 'normal',
-    alignSelf:'center',
+    alignSelf: 'center',
     padding: 5,
   },
   title: {
@@ -116,7 +116,7 @@ const theme = {
     fontSize: 28,
     //fontWeight: 'bold',
     textAlign: 'center',
-    alignSelf:'center',
+    alignSelf: 'center',
     padding: 5,
   },
   subtitle: {
@@ -125,7 +125,7 @@ const theme = {
     fontSize: 16,
     //fontWeight: 'bold',
     textAlign: 'center',
-    alignSelf:'center',
+    alignSelf: 'center',
     padding: 3,
   },
   text: {
@@ -141,37 +141,37 @@ const theme = {
     textTransform: 'none',
     backgroundColor: '#002E78',
     borderRadius: 0,
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   },
-  avatar:{
-    margin:10,
-    alignItems:'center',
-    justifyContent:'center',
-    width:40,
-    height:40,
-    borderRadius:100,
-    backgroundColor:'#00235B',
+  avatar: {
+    margin: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 40,
+    height: 40,
+    borderRadius: 100,
+    backgroundColor: '#00235B',
   },
-  headerImage:{
-    margin:10,
-    alignItems:'center',
-    justifyContent:'center',
-    backgroundColor:'#00235B'
+  headerImage: {
+    margin: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#00235B',
   },
-  darkScreenRoot:{
+  darkScreenRoot: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems:'center', 
+    alignItems: 'center',
     backgroundColor: '#031E4A',
   },
-  lightScreenRoot:{
+  lightScreenRoot: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems:'center', 
+    alignItems: 'center',
     backgroundColor: '#ededed',
   },
-};
+}
 
-export default theme;
+export default theme

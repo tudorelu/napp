@@ -15,8 +15,13 @@
     "start:native": "ENVFILE=.env && react-native start",
     "start:android": "ENVFILE=.env && react-native run-android",
     "start:ios": "ENVFILE=.env && react-native run-ios",
-    "clean": "watchman watch-del-all && rm -rf ios/build && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-*",
-    "clean:hard": "npm run clean && rm -rf node_modules/ && npm cache clean --force && npm install && npm start -- --reset-cache"
+    "clean": "./scripts/clean.sh"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:fix",
+      "pre-push": "npm run test"
+    }
   },
   "dependencies": {
     "@tradle/react-native-http": "^2.0.1",
@@ -27,6 +32,7 @@
     "dns.js": "^1.0.1",
     "domain-browser": "^1.2.0",
     "events": "^1.1.1",
+    "expo-local-authentication": "^6.0.0",
     "https-browserify": "0.0.1",
     "nuls-js": "file:nuls-js-1.1.2.tgz",
     "path-browserify": "0.0.0",
@@ -47,9 +53,13 @@
     "react-native-snap-carousel": "^3.8.0",
     "react-native-tcp": "^3.3.1",
     "react-native-udp": "^2.6.1",
+    "react-native-unimodules": "^0.5.4",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^3.12.1",
+    "react-redux": "^7.1.1",
     "readable-stream": "^1.0.33",
+    "redux": "^4.0.4",
+    "redux-saga": "^1.0.5",
     "stream-browserify": "^1.0.0",
     "string_decoder": "^0.10.31",
     "styled-components": "^4.3.2",
@@ -65,6 +75,7 @@
     "@types/jest": "24.0.18",
     "@types/react": "^16.9.2",
     "@types/react-native": "0.60.8",
+    "@types/react-redux": "^7.1.2",
     "@types/react-test-renderer": "16.9.0",
     "@types/styled-components": "^4.1.18",
     "@typescript-eslint/eslint-plugin": "^2.0.0",
@@ -72,9 +83,14 @@
     "babel-jest": "24.9.0",
     "eslint": "^6.2.2",
     "eslint-config-prettier": "^6.1.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-native": "^3.7.0",
     "eslint-plugin-standard": "^4.0.1",
+    "husky": "^3.0.4",
     "jest": "24.9.0",
     "metro-react-native-babel-preset": "0.56.0",
+    "prettier": "^1.18.2",
     "react-native-dotenv": "^0.2.0",
     "react-test-renderer": "16.8.3",
     "rn-nodeify": "^10.1.0",
