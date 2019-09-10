@@ -1,20 +1,11 @@
 import {Action} from 'redux'
 
+export const REQUEST = 'REQUEST'
 export const REQUEST_START = 'REQUEST_START'
 export const REQUEST_SUCCESS = 'REQUEST_SUCCESS'
 export const REQUEST_ERROR = 'REQUEST_ERROR'
 export const REQUEST_CANCEL = 'REQUEST_CANCEL'
 export const REQUEST_RESET = 'REQUEST_RESET'
-
-export interface RequestAction extends Action {
-  type:
-    | typeof REQUEST_START
-    | typeof REQUEST_SUCCESS
-    | typeof REQUEST_ERROR
-    | typeof REQUEST_CANCEL
-    | typeof REQUEST_RESET
-  meta: RequestMeta
-}
 
 export interface RequestMeta<
   Extra extends Record<string, any> = Record<string, any>
@@ -25,26 +16,42 @@ export interface RequestMeta<
   extra?: Extra
 }
 
-export interface RequestStartAction extends Action {
-  type: typeof REQUEST_START
-  meta: RequestMeta
+export interface RequestAction<M extends RequestMeta = RequestMeta>
+  extends Action {
+  type: typeof REQUEST
+  meta: M
 }
-export function requestStart(meta: RequestMeta): RequestStartAction {
+export function request<M extends RequestMeta>(meta: M): RequestAction<M> {
+  return {
+    type: REQUEST,
+    meta,
+  }
+}
+
+export interface RequestStartAction<M extends RequestMeta = RequestMeta>
+  extends Action {
+  type: typeof REQUEST_START
+  meta: M
+}
+export function requestStart<M extends RequestMeta>(
+  meta: M,
+): RequestStartAction<M> {
   return {
     type: REQUEST_START,
     meta,
   }
 }
 
-export interface RequestSuccessAction extends Action {
+export interface RequestSuccessAction<M extends RequestMeta = RequestMeta>
+  extends Action {
   type: typeof REQUEST_SUCCESS
   payload?: any
-  meta: RequestMeta
+  meta: M
 }
-export function requestSuccess(
-  meta: RequestMeta,
+export function requestSuccess<M extends RequestMeta>(
+  meta: M,
   payload?: any,
-): RequestSuccessAction {
+): RequestSuccessAction<M> {
   return {
     type: REQUEST_SUCCESS,
     payload,
@@ -52,15 +59,16 @@ export function requestSuccess(
   }
 }
 
-export interface RequestErrorAction extends Action {
+export interface RequestErrorAction<M extends RequestMeta = RequestMeta>
+  extends Action {
   type: typeof REQUEST_ERROR
   payload: Error
-  meta: RequestMeta
+  meta: M
 }
-export function requestError(
-  meta: RequestMeta,
+export function requestError<M extends RequestMeta>(
+  meta: M,
   payload: Error,
-): RequestErrorAction {
+): RequestErrorAction<M> {
   return {
     type: REQUEST_ERROR,
     payload,
@@ -68,22 +76,28 @@ export function requestError(
   }
 }
 
-export interface RequestCancelAction extends Action {
+export interface RequestCancelAction<M extends RequestMeta = RequestMeta>
+  extends Action {
   type: typeof REQUEST_CANCEL
-  meta: RequestMeta
+  meta: M
 }
-export function requestCancel(meta: RequestMeta): RequestCancelAction {
+export function requestCancel<M extends RequestMeta>(
+  meta: M,
+): RequestCancelAction<M> {
   return {
     type: REQUEST_CANCEL,
     meta,
   }
 }
 
-export interface RequestResetAction extends Action {
+export interface RequestResetAction<M extends RequestMeta = RequestMeta>
+  extends Action {
   type: typeof REQUEST_RESET
-  meta: RequestMeta
+  meta: M
 }
-export function requestReset(meta: RequestMeta): RequestResetAction {
+export function requestReset<M extends RequestMeta>(
+  meta: M,
+): RequestResetAction<M> {
   return {
     type: REQUEST_RESET,
     meta,
@@ -91,6 +105,7 @@ export function requestReset(meta: RequestMeta): RequestResetAction {
 }
 
 export type RequestActions =
+  | RequestAction
   | RequestStartAction
   | RequestSuccessAction
   | RequestErrorAction

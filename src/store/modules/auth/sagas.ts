@@ -1,45 +1,32 @@
-import {put, all, takeLatest, call} from '@redux-saga/core/effects'
-import {
-  REQUEST_START,
-  RequestStartAction,
-  requestError,
-  requestSuccess,
-} from '../request/actions'
-import {AUTH_START} from './actions'
+import {put, all, call} from '@redux-saga/core/effects'
+import {AUTH, authSuccess, AuthStartAction, authError} from './actions'
 import {AuthServiceI} from '../../../services/auth'
+import {takeEveryCancellable} from '../request/sagas'
 
-let _authService: AuthServiceI
-
-function* handleSetAuth({meta}: RequestStartAction) {
+function* handleSetAuth(authService: AuthServiceI, action: AuthStartAction) {
   try {
-    const res = yield call([_authService, 'auth'])
+    const res = yield call([authService, 'auth'])
 
     if (res.success) {
-      yield put(requestSuccess(meta))
+      yield put(authSuccess(action))
     } else {
       throw new Error('Auth error')
     }
   } catch (err) {
-    yield put(requestError(meta, err))
+    yield put(authError(action, err))
   }
 }
 
-export function* getAuthSaga(): any {
-  yield takeLatest(
-    (action: any) =>
-      action.type === REQUEST_START &&
-      action.meta.startActionType === AUTH_START,
-    handleSetAuth,
-  )
+export function* getAuthSaga(authService: AuthServiceI): any {
+  yield takeEveryCancellable(AUTH, handleSetAuth, authService)
 }
 
-export function* authSaga() {
-  yield all([getAuthSaga()])
+export function* authSaga(authService: AuthServiceI) {
+  yield all([getAuthSaga(authService)])
 }
 
 export function createAuthSaga(authService: AuthServiceI): any {
-  _authService = authService
-  return authSaga()
+  return authSaga(authService)
 }
 
 export default createAuthSaga

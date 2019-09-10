@@ -21,6 +21,7 @@ import {Provider} from 'react-redux'
 import AuthTest from './containers/AuthTest'
 import AuthMessage from './containers/AuthMessage'
 import ErrorMessage from './containers/ErrorMessage'
+import AccountList from './containers/AccountList'
 
 const store = configureStore()
 
@@ -60,7 +61,8 @@ const App = (): ReactElement => {
             <Header title="Nuls App" />
             <Container>
               {!usingHermes ? null : <Text>Engine: Hermes</Text>}
-              <Text>Using Config asdas2| ENV = {ENV}</Text>
+              <Text>Using Config | ENV = {ENV}</Text>
+              <AccountList />
               <AuthTest />
             </Container>
           </ScrollView>

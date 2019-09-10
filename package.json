@@ -24,6 +24,8 @@
     }
   },
   "dependencies": {
+    "@nuls.io/account": "0.0.1",
+    "@nuls.io/core": "0.0.1",
     "@tradle/react-native-http": "^2.0.1",
     "assert": "^1.5.0",
     "browserify-zlib": "^0.1.4",
@@ -61,6 +63,7 @@
     "readable-stream": "^1.0.33",
     "redux": "^4.0.4",
     "redux-saga": "^1.0.5",
+    "reselect": "^4.0.0",
     "stream-browserify": "^1.0.0",
     "string_decoder": "^0.10.31",
     "styled-components": "^4.3.2",
@@ -68,7 +71,8 @@
     "tty-browserify": "0.0.0",
     "url": "^0.10.3",
     "util": "^0.10.4",
-    "vm-browserify": "0.0.4"
+    "vm-browserify": "0.0.4",
+    "xxhashjs": "^0.2.2"
   },
   "devDependencies": {
     "@babel/core": "7.5.5",

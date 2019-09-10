@@ -1,38 +1,21 @@
-import {
-  requestStart,
-  requestSuccess,
-  RequestSuccessAction,
-  RequestStartAction,
-  RequestErrorAction,
-  requestError,
-} from '../request/actions'
+import {request, requestSuccess, requestError} from '../request/actions'
 
-export const AUTH_START = 'AUTH_START'
+export const AUTH = 'AUTH'
 
-export function authStart(): RequestStartAction {
-  return requestStart({
-    startActionType: AUTH_START,
+export function authStart() {
+  return request({
+    startActionType: AUTH,
   })
 }
 export type AuthStartAction = ReturnType<typeof authStart>
 
-export function authSuccess(payload: any): RequestSuccessAction {
-  return requestSuccess(
-    {
-      startActionType: AUTH_START,
-    },
-    payload,
-  )
+export function authSuccess(action: AuthStartAction, payload?: any) {
+  return requestSuccess(action.meta, payload)
 }
 export type AuthSuccessAction = ReturnType<typeof authSuccess>
 
-export function authError(payload: Error): RequestErrorAction {
-  return requestError(
-    {
-      startActionType: AUTH_START,
-    },
-    payload,
-  )
+export function authError(action: AuthStartAction, payload: Error) {
+  return requestError(action.meta, payload)
 }
 export type AuthErrorAction = ReturnType<typeof authError>
 

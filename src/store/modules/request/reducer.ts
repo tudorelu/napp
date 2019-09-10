@@ -72,7 +72,12 @@ const requestReducer = (
       }
     }
     case REQUEST_RESET:
-      return requestInitialState
+      const key = getRequestKey(action.meta)
+      const newState = {
+        ...state,
+      }
+      delete newState[key]
+      return newState
     default:
       return state
   }
