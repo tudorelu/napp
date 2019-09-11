@@ -1,15 +1,9 @@
-import React from 'react'
-import {
-  createSwitchNavigator,
-  createStackNavigator,
-  createAppContainer,
-} from 'react-navigation'
+import {createSwitchNavigator, createAppContainer} from 'react-navigation'
 
 import MainStackNavigator from './MainStackNavigator'
 import AuthNavigator from './AuthNavigator'
 
 import SplashScreen from '../screens/SplashScreen'
-import WelcomeScreen from '../screens/WelcomeScreen'
 
 const AppNavigator = createSwitchNavigator({
   // You could add another route here for authentication.
