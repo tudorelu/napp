@@ -35,7 +35,7 @@ class ConfirmPinScreen extends Component {
   pinInput = React.createRef()
 
   static propTypes = {
-    navigation: PropTypes.navigation,
+    navigation: PropTypes.any,
   }
   render() {
     if (this.state.wasSet) {
