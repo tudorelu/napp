@@ -6,7 +6,12 @@ export class TransactionModel {
   from = ''
   to = ''
   type = ''
+  note = ''
 
-  value = 0
-  fee = 0.01
+  amount = 0
+
+  tx = 0
+  utxo = 0
+
+  confirmed = false
 }
